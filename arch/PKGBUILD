@@ -1,0 +1,21 @@
+pkgname="diffsem"
+pkgver=r16.60b54c7
+pkgver() {
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+pkgrel=1
+pkgdesc="Generates diffs that include the full file"
+arch=('any')
+url="https://github.com/janibonnevier/diffsem"
+license=('MIT')
+depends=('git' 'sed' 'grep' 'bash' 'coreutils')
+source=('diffsem' 'LICENSE')
+sha256sums=('SKIP' 'SKIP')
+
+package() {
+  mkdir -p $pkgdir/usr/bin
+  install diffsem $pkgdir/usr/bin
+
+  mkdir -p $pkgdir/usr/share/licenses
+  install --mode=644 LICENSE $pkgdir/usr/share/licenses/$pkgname
+}
