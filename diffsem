@@ -42,7 +42,7 @@ if [ -z "$3" ]; then
 fi
 
 repopath=${1%/}
-codedir=$2
+pattern=$2
 commit=$3
 
 outfolder=$PWD/diff
@@ -73,7 +73,7 @@ cd $repopath
 
 echo Finding changed files...
 git diff $commit -- $repopath > $outfolder/ALL_CHANGES$postfix
-git diff --name-only $commit -- $repopath | grep $codedir > \
+git diff --name-only $commit -- $repopath | grep $pattern > \
 $outfolder/CHANGED_SOURCES$postfix
 
 echo Creating diffs...
