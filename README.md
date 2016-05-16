@@ -28,8 +28,8 @@ ln -s <said directory of choice>/diffsem/diffsem /usr/local/bin/
 - `<pattern>` - grep pattern matching the filenames/paths to be compared
 - `<commit>` - the commit to compare with
 
-The generated text files are placed in ./diff/ (that is, a directory 'diff' 
-within the current working directory). Previously generated files are not 
+The generated text files are placed in `./diff/` (that is, a directory named 
+"diff" within the current working directory). Previously generated files are not 
 deleted upon a rerun.
 
 ### Examples
