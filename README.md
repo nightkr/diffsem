@@ -28,7 +28,21 @@ ln -s <said directory of choice>/diffsem /usr/bin/
 - `<commit>` - the commit to compare with
 
 The generated text files are placed in ./diff (that is, a directory 'diff' 
-within the current working directory).
+within the current working directory). Previously generated files are not 
+deleted upon a rerun.
+
+### Examples
+Compare all files in `repo` to commit `58d92203a2e`:  
+`diffsem /path/to/repo * 58d92203a2e`
+
+Compare the contents of the `src` directory of `repo` to commit `58d92203a2e`:  
+`diffsem /path/to/repo /src/ 58d92203a2e`
+
+Compare the contents of the `src` and `test` directories of `repo` to commit `58d92203a2e`:  
+`diffsem /path/to/repo '/src/\|/test/' 58d92203a2e`  
+
+Compare all .c files in `repo` to commit `58d92203a2e`:  
+`diffsem /path/to/repo .c$ 58d92203a2e`
 
 ## Dependencies
 

@@ -36,7 +36,7 @@
 
 
 if [ -z "$3" ]; then 
-	echo Please specify three arguments:
+	echo Please provide three arguments:
 	echo "diffsem <repo> <pattern> <commit>"
 	exit 1
 fi
@@ -69,15 +69,16 @@ function gen_diff {
 echo Creating output folder...
 mkdir -p $outfolder
 
-echo Finding changed files...
 cd $repopath
+
+echo Finding changed files...
 git diff $commit -- $repopath > $outfolder/ALL_CHANGES$postfix
 git diff --name-only $commit -- $repopath | grep $codedir > \
 $outfolder/CHANGED_SOURCES$postfix
 
 echo Creating diffs...
-while read p; do
-	gen_diff $commit $repopath/$p $outfolder $postfix;
+while read file; do
+	gen_diff $commit $repopath/$file $outfolder $postfix;
 done < $outfolder/CHANGED_SOURCES$postfix
 
 echo Done.
