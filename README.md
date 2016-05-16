@@ -23,9 +23,9 @@ ln -s <said directory of choice>/diffsem /usr/bin/
 
 `diffsem <repo> <pattern> <commit>`
 
-`<repo>` - the path to the git repository
-`<pattern>` - grep pattern matching the filenames/paths to be compared
-`<commit>` - the commit to compare with
+- `<repo>` - the path to the git repository
+- `<pattern>` - grep pattern matching the filenames/paths to be compared
+- `<commit>` - the commit to compare with
 
 The generated text files are placed in ./diff (that is, a directory 'diff' 
 within the current working directory).
