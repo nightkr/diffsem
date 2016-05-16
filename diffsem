@@ -38,7 +38,7 @@
 if [ -z "$3" ]; then 
 	echo Please specify three arguments:
 	echo "diffsem <repo> <pattern> <commit>"
-	exit 0
+	exit 1
 fi
 
 repopath=${1%/}
@@ -81,3 +81,4 @@ while read p; do
 done < $outfolder/CHANGED_SOURCES$postfix
 
 echo Done.
+exit 0
