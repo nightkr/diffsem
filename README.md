@@ -16,7 +16,7 @@ for a university assignment.
 ```
 cd <directory of your choice>
 git clone https://github.com/janibonnevier/diffsem.git
-ln -s <above directory of choice>/diffsem /usr/bin/
+ln -s <said directory of choice>/diffsem /usr/bin/
 ```
 
 ## Usage
