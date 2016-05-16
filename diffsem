@@ -17,7 +17,7 @@
 # <pattern> - grep pattern matching the filenames/paths to be compared
 # <commit> - the commit to compare with
 #
-# The generated text files are placed in ./diff (that is, a directory 'diff' 
+# The generated text files are placed in ./diff/ (that is, a directory 'diff' 
 # within the current working directory).
 #
 # Copyright (c) 2016 Jani Bonnevier

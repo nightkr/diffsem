@@ -11,7 +11,7 @@ Written out of a need to present modified source code with highlighted changes
 for a university assignment.
 
 *May silently break for files longer than 10 000 000 lines. This can be fixed by 
-increasing a constant in the script.
+increasing a constant in the script .
 
 ## Installation
 ```
@@ -28,7 +28,7 @@ ln -s <said directory of choice>/diffsem/diffsem /usr/local/bin/
 - `<pattern>` - grep pattern matching the filenames/paths to be compared
 - `<commit>` - the commit to compare with
 
-The generated text files are placed in ./diff (that is, a directory 'diff' 
+The generated text files are placed in ./diff/ (that is, a directory 'diff' 
 within the current working directory). Previously generated files are not 
 deleted upon a rerun.
 
