@@ -56,7 +56,7 @@ function gen_diff {
 
 	local outfile=$outfolder_l/$(basename $infile_l)$postfix_l
 
-	git diff --unified=100000 $commit_l -- $infile_l > $outfile
+	git diff --unified=10000000 $commit_l -- $infile_l > $outfile
 	sed -i '/^-/d' $outfile
 	sed -i '/^diff --git/d' $outfile
 	sed -i '/^index /d' $outfile

@@ -10,7 +10,8 @@ not shown.
 Written out of a need to present modified source code with highlighted changes 
 for a university assignment.
 
-*May silently break for files longer than 100 000 lines.
+*May silently break for files longer than 10 000 000 lines. This can be fixed by 
+increasing a constant in the script.
 
 ## Installation
 ```
