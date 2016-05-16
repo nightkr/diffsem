@@ -1,0 +1,90 @@
+#!/bin/bash
+
+################################################################################
+#
+# diffsem
+# =======
+#
+# This bash script compares the current state of files in a git repository
+# with a specified commit. Unlike a `git diff`, however, the resulting 
+# output is a set of files containing the full* source code of all modified
+# files, where each new or modified line is prepended by a "+".
+#
+# Usage:
+# diffsem <repo> <pattern> <commit>
+#
+# <repo> - the path to the git repository
+# <pattern> - grep pattern matching the filenames/paths to be compared
+# <commit> - the commit to compare with
+#
+# The generated text files are placed in ./diff (that is, a directory 'diff' 
+# within the current working directory).
+#
+# Copyright (c) 2016 Jani Bonnevier
+#
+# Released under the terms of the MIT License, see the file "LICENSE".
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+################################################################################
+
+
+if [ -z "$1" ]; then 
+	echo "Please specify the path to the repository.";
+	exit 0; 
+fi;
+
+if [ -z "$2" ]; then 
+	echo "Please specify a grep pattern to match files to be diffed.";
+	exit 0; 
+fi;
+
+if [ -z "$2" ]; then 
+	echo "Please specify a commit to compare with.";
+	exit 0; 
+fi;
+
+repopath=${1%/}
+codedir=$2
+commit=$3
+
+outfolder=$PWD/diff
+postfix=_diffsem.txt
+
+function gen_diff {
+	commit=$1
+	infile=$2
+
+	outfile=$outfolder/$(basename $infile)$postfix
+
+	git diff --unified=100000 $commit -- $infile > $outfile
+	sed -i '/^-/d' $outfile
+	sed -i '/^diff --git/d' $outfile
+	sed -i '/^index /d' $outfile
+	sed -i '/^+++ /d' $outfile
+	sed -i '/^@@.*@@$/d' $outfile
+	sed -i '/^new file /d' $outfile
+	echo Created $outfile
+}
+
+echo Creating output folder...
+mkdir -p $outfolder
+
+echo Finding changed files...
+cd $repopath
+git diff $commit -- $repopath > $outfolder/ALL_CHANGES$postfix
+git diff --name-only $commit -- $repopath | grep $codedir > \
+$outfolder/CHANGED_SOURCES$postfix
+
+echo Creating diffs...
+while read p; do
+	gen_diff $commit $repopath/$p;
+done < $outfolder/CHANGED_SOURCES$postfix
+
+echo Done.
