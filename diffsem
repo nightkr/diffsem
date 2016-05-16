@@ -35,20 +35,11 @@
 ################################################################################
 
 
-if [ -z "$1" ]; then 
-	echo "Please specify the path to the repository.";
-	exit 0; 
-fi;
-
-if [ -z "$2" ]; then 
-	echo "Please specify a grep pattern to match files to be diffed.";
-	exit 0; 
-fi;
-
-if [ -z "$2" ]; then 
-	echo "Please specify a commit to compare with.";
-	exit 0; 
-fi;
+if [ -z "$3" ]; then 
+	echo Please specify three arguments:
+	echo "diffsem <repo> <pattern> <commit>"
+	exit 0
+fi
 
 repopath=${1%/}
 codedir=$2
