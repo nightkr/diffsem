@@ -58,12 +58,14 @@ outfolder=$PWD/diff
 postfix=_diffsem.txt
 
 function gen_diff {
-	commit=$1
-	infile=$2
+	local commit_l=$1
+	local infile_l=$2
+	local outfolder_l=$3
+	local postfix_l=$4
 
-	outfile=$outfolder/$(basename $infile)$postfix
+	local outfile=$outfolder_l/$(basename $infile_l)$postfix_l
 
-	git diff --unified=100000 $commit -- $infile > $outfile
+	git diff --unified=100000 $commit_l -- $infile_l > $outfile
 	sed -i '/^-/d' $outfile
 	sed -i '/^diff --git/d' $outfile
 	sed -i '/^index /d' $outfile
@@ -84,7 +86,7 @@ $outfolder/CHANGED_SOURCES$postfix
 
 echo Creating diffs...
 while read p; do
-	gen_diff $commit $repopath/$p;
+	gen_diff $commit $repopath/$p $outfolder $postfix;
 done < $outfolder/CHANGED_SOURCES$postfix
 
 echo Done.
