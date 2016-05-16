@@ -33,16 +33,16 @@ deleted upon a rerun.
 
 ### Examples
 Compare all files in `repo` to commit `58d92203a2e`:  
-`diffsem /path/to/repo * 58d92203a2e`
+`diffsem /path/to/repo/ / 58d92203a2e`
 
 Compare the contents of the `src` directory of `repo` to commit `58d92203a2e`:  
-`diffsem /path/to/repo /src/ 58d92203a2e`
+`diffsem /path/to/repo/ /src/ 58d92203a2e`
 
 Compare the contents of the `src` and `test` directories of `repo` to commit `58d92203a2e`:  
-`diffsem /path/to/repo '/src/\|/test/' 58d92203a2e`  
+`diffsem /path/to/repo/ '/src/\|/test/' 58d92203a2e`  
 
-Compare all .c files in `repo` to commit `58d92203a2e`:  
-`diffsem /path/to/repo .c$ 58d92203a2e`
+Compare all `.c` files in `repo` to commit `58d92203a2e`:  
+`diffsem /path/to/repo/ '\.c$' 58d92203a2e`
 
 ## Dependencies
 
